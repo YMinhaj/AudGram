@@ -1,0 +1,45 @@
+
+<div class="row" style="top: 50%; transform: translateY(25%)" >
+    <div class="col s12 m2 l3"></div>
+    <form class="col s12 m8 l6 card r1  grey lighten-4" [formGroup]="form" materialize novalidate (ngSubmit)="onRegister(form.value)">
+      <div class="card-content">
+        <span class="card-title center">Create an account</span>
+
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input id="first_name" type="text" class="validate" placeholder="First Name" [formControl]="form.controls['fname']">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="last_name" type="text" class="validate" placeholder="Last Name" [formControl]="form.controls['lname']">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate" placeholder="something@example.com" [formControl]="form.controls['email']">
+          <label for="email">Email</label>
+        </div>
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate" materialize="characterCounter" minlength="6" placeholder="Password should be atleast 6 digits" [formControl]="form.controls['password']">
+            <label for="password">Password</label>
+          </div>
+          <div class="preloader-wrapper small active right" *ngIf="!btn">
+            <div class="spinner-layer spinner-red-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+            </div>
+          </div>
+
+        <button type="submit"  class="btn right waves-effect waves-light  " *ngIf="btn">Sign Up</button>
+  </div>
+      </div>
+  </form>
+
+</div>

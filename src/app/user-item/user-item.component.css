@@ -1,0 +1,13 @@
+@media only screen and (max-width : 550px){
+    .l{
+    text-align: center;
+}
+}
+@media only screen and (max-width : 992px){
+    .l{
+    text-align: right;
+}
+}
+.l{
+    text-align: center;
+}

@@ -1,0 +1,10 @@
+<div (mouseover)="onRead()" (click)="onNavigateNotification()" class="modal-action modal-close chip hoverable" [class.white]="notification.state == 'read'" style="cursor: pointer; width: 100%; border-radius: 0; height: 52px; padding: 10px 20px;" *ngIf="user && notification.type == 'Like'">
+    <img [src]="user.dp" alt="Contact Person">
+    <b>{{user.fname}} {{user.lname}}</b> like on your post.
+</div>
+<div (mouseover)="onRead()" (click)="onNavigateNotification()" class="modal-action modal-close chip hoverable" [class.white]="notification.state == 'read'" style="cursor: pointer; width: 100%; border-radius: 0; height: 52px; padding: 10px 20px;" *ngIf="user && notification.type == 'Comment'">
+    <img [src]="user.dp" alt="Contact Person">
+    <b>{{user.fname}} {{user.lname}}</b> commented on your post.
+</div>
+<!--<a class='btn-flat large ' [routerLink]="['/index/profile/'+us.getUid()+'/']" style="width: 100%; text-transform: none;"><img [src]="us.getUser().dp" class="circle p left" alt=""><b style=" text-transform: none;">{{us.getUser().fname}} {{us.getUser().fname}}</b> <br>Liked your post</a>-->
+<br>

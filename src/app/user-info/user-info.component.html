@@ -1,0 +1,29 @@
+<ul id="slide-out" class="side-nav fixed">
+  <li *ngIf="dp"><div class="userView">
+    <div class="background">
+      <img src="../../images/cover.jpg" style="background-color: #333; width: 100%; height: 100%">
+    </div>
+    <a class="center center-align">
+      <img class="circle" style="margin-left: auto; margin-right: auto;" [src]="dp" *ngIf="dp">
+      <!--<div class="preloader-wrapper big active" *ngIf="!dp">
+        <div class="spinner-layer spinner-green-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+        </div>
+      </div>-->
+      <!---->
+    </a>
+    <a [routerLink]="['/index/profile/'+uid]"><span class="white-text name">{{fname}} {{lname}}</span></a>
+    <a><span class="white-text email">{{email}}</span></a>
+  </div></li>
+  <!--<a *ngIf="uid != us.getUid()" class="waves-effect black white-text waves-light btn-large btn-flat" style="text-transform: none;"><i class="material-icons left" style="margin-left: 0;">add</i>Add Friend</a>-->
+  <!--<a *ngIf="uid != us.getUid()" class="waves-effect black white-text waves-light btn-large btn-flat" style="text-transform: none; "><i class="material-icons left" style="margin-left: 0;">chat_bubble</i>Message</a>-->
+   <li><a [routerLink]="['/index/profile/'+uid]"><i class="material-icons">assignment</i>Posts</a></li>
+  <!--<li><a href="#!"><i class="material-icons">supervisor_account</i>Friends</a></li>-->
+  <!--<li><a href="#!"><i class="material-icons">star</i>Favorite</a></li>-->
+</ul>

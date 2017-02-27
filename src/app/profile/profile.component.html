@@ -1,0 +1,52 @@
+<app-user-info
+  [dp]="user.dp"
+  [email]="user.email"
+  [fname]="user.fname"
+  [lname]="user.lname"
+  [uid]="user.uid" 
+  ></app-user-info>
+<header>
+  <!--<a materialize="sideNav" [materializeParams]="[{edge:'left'}]" href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>-->
+  <!--<a materialize="sideNav" [materializeParams]="[{edge:'left'}]" href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>-->
+  <app-profile-navbar *ngIf="us.getUid()" [isFullWidth]="bool"></app-profile-navbar>
+  <div class="my-container" *ngIf="!us.getUid()">
+  <nav class="no-opacity black">
+    <div class="container">
+    <div class="nav-wrapper no-opacity">
+          <a class="brand-logo left">
+        <i class="material-icons prefix" style="margin-right: 0;">play_arrow</i>
+        <button class="btn-flat white-text" style="padding: 0; text-transform: none; font-weight: normal;"><b>A</b>ud<b>G</b>ram</button>
+        </a>
+      <ul id="nav-mobile" class="right">
+        <li><a [routerLink]="['/login']">Login</a></li>
+        <li><a [routerLink]="['/register']">Create an account</a></li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+  </div>
+</header>
+<main>
+  <div class="container">
+    <app-create-post
+      *ngIf="uid == us.getUid() && cp"
+      [dp]="user.dp"
+      [key]="user.$key"
+      [uid]="user.uid"></app-create-post>
+    <div *ngIf="!sp">
+    <app-post
+      *ngFor="let post of posts"
+      [post]="post"
+  
+      [uid]="uid"
+      ></app-post>
+      </div>
+      <app-post 
+      *ngIf="sp"
+      [singlePost]="sp"
+      [post]="sPost"
+
+      [uid] ="uid"
+      ></app-post>
+  </div>
+</main>

@@ -1,0 +1,109 @@
+      <div class="navbar-fixed">
+      <nav class="white" *ngIf="us.getUser().dp" [class.padding-right]="search || dpUploader">
+        <div [class.container]="isFullWidth">
+        <div class="nav-wrapper" *ngIf="!searchBar">
+      <a href="#" class="brand-logo left">
+          <a class="button-collapse black-text" style="margin-left: 0; margin-right: 5px" materialize="sideNav" [materializeParams]="[{edge:'left'}]" data-activates="slide-out"><i class="material-icons" style="margin-right: 0">error_outline</i></a>        
+        <i class="material-icons prefix black-text" style="margin-right: 0;">play_arrow</i>
+        <button class="btn-flat black-text" style="padding: 0; text-transform: none; font-weight: normal;"><b>A</b>ud<b>G</b>ram</button>
+        </a>
+      <!--<a  href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons black-text">menu</i></a>-->
+      <ul id="mobile-demo" class="right">
+        <!--<li><a href="sass.html" materialize="dropdown" class='dropdown-button btn' href='#' data-activates='searchbar'><i class="material-icons">search</i></a></li>-->
+     <!--<li>
+      <form>
+        <div class="input-field" style="text-align: right;">
+          <i class="material-icons prefix black-text" for="icon_prefix">search</i>          
+          <input id="icon_prefix" type="text" placeholder="Write your query here!"  class="validate black-text" >
+
+        </div>
+      </form>
+      </li>-->
+        <li class="small-li"><a materialize="tooltip" class="btn-floating btn-flat tooltipped" (click)="onSearchBarOpen()" data-position="bottom" data-delay="10" data-tooltip="Search"><i class="material-icons black-text">search</i></a></li>      
+        <li><a class='btn-flat large ' [routerLink]="['/index/profile/'+us.getUid()+'/']" style=" margin-right: 0; padding: 0"><img [src]="us.getUser().dp" class="circle p left" alt=""><b style="margin-left: 5px; text-transform: none;">{{us.getUser().fname}}</b></a></li>
+        <!--<li class=" small-li badge1"[attr.data-badge]="requests > 0 ? requests : null">
+          <a class=" btn-floating btn-flat " (click)="onFr()"><i class="material-icons black-text">supervisor_account</i></a>
+        </li>-->
+        <!--<li class="small-li badge1" [attr.data-badge]="messages > 0 ? messages : null">
+          <a class="btn-floating btn-flat  " (click)="onMsg()"><i class="material-icons black-text">forum</i></a></li>-->
+        <li class="small-li badge1" [attr.data-badge]="notifications > 0 ? notifications : null">
+          <a class="btn-floating btn-flat " (click)="onNoti()"><i class="material-icons black-text">language</i></a></li>
+        <li><a materialize="dropdown" [materializeParams]="[{constrainWidth:false,belowOrigin: true}]" class=" dropdown btn-floating btn-flat " data-activates='settingMenu'><i class="material-icons black-text">arrow_drop_down</i></a>
+              <div id='settingMenu' class='dropdown-content'>
+      <!--<ul>
+                   <li><a class="black-text">Settings</a></li>
+              <li><a class="black-text">Logout</a></li>
+      </ul>-->
+      <!--<a class="btn-flat" style="margin: 0; display: block; padding-left: 15px; padding-right: 15px;"><i class="material-icons left">settings</i>Settings</a>-->
+      <!--<br>-->
+      <a class="btn-flat" style="margin: 0; display: block; padding-left: 15px; padding-right: 15px;" (click)="onLogout()"><i class="material-icons left">call_missed</i>Logout</a>
+    </div>
+        </li>
+      </ul>
+
+    </div>
+    </div>
+
+            <!--<ul id='settingMenu' class='dropdown-content'>
+              <li><a class="waves-effect waves-light btn"><i class="material-icons left">settings</i>Settings</a></li>
+              <li><a class="waves-effect waves-light btn"><i class="material-icons left">all_missed</i>Logout</a></li>
+            </ul>-->
+        <div class="nav-wrapper" *ngIf="searchBar">
+      <form [formGroup]="form" (ngSubmit)="onSearch(form.value)">
+        <div class="input-field">
+          <input [formControl]="form.controls['query']" id="search" type="search" class="black white-text" required autofocus placeholder="Write your query here!" #query>
+          <label class="label-icon">
+          <i class="material-icons white-text left" (click)="onSearchBarClose()" style="cursor: pointer;">close</i>
+            </label>
+          <i class="material-icons white-text right" (click)="onSearch(form.value)">search</i>
+        </div>
+      </form>
+    </div>
+    </nav>  
+    </div>
+<!--<div id='searchbar' class='dropdown-content' style="width: auto">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" placeholder="Write your query here!" class="validate">
+          <!--<label for="icon_prefix">First Name</label>-->
+<!--</div>-->
+
+  <!--Requests-->
+  <!--<div id="fr" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="fr">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>-->
+  <!--message-->
+  
+    <div id="msg" class="modal bottom-sheet" style="max-height: 100vx; min-height: 80vh" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="msg">
+
+    <div class="modal-content">
+      
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+  <!--Notification-->
+    <div id="noti" class="modal bottom-sheet" style="max-height: 100vx; min-height: 80vh" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="noti">
+          <nav class="white">
+            
+    <div class="nav-wrapper">
+      <a  class="brand-logo black-text left" style="margin-left: 20px;">Notifications</a>
+      <ul id="nav-mobile" class="right">
+        <li style=""><a class="btn-floating btn-flat modal-action modal-close"><i class="material-icons black-text">close</i></a></li>
+      </ul>
+    </div>
+  
+  </nav>
+    <div class="modal-content" *ngIf="listOfNoti">
+      <app-notification-item *ngFor="let notification of listOfNoti"
+      [notification]="notification"
+      ></app-notification-item>
+    </div>
+  </div>
+  <!--<div id="toast-container"></div>-->

@@ -1,0 +1,33 @@
+  <app-profile-navbar *ngIf="us.getUid()" [isFullWidth]="true" [search]="s"></app-profile-navbar>
+  <div class="container" style="padding-top: 10px; min-height: 100vh">
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a  class="btn btn-flat black-text" [class.active]="tab == 'people'" (click)="onPeople()"><i class="material-icons left">people</i>People</a></li>
+        <li class="tab col s6"><a class="btn btn-flat black-text" [class.active]="tab == 'posts'" (click)="onPosts()"><i class="material-icons left">assignment</i>Posts</a></li>
+      </ul>
+    </div>
+    <div id="test1" class="col s12" style="display: block" *ngIf="tab == 'people'">
+      <div class="col s12 l3 m6" *ngFor=" let peep of people">
+      <app-user-item
+      [fullName]="peep.fullName"
+      [dp]="peep.dp"
+      [uid]="peep.uid"
+      ></app-user-item>
+    </div>
+    </div>
+    <div id="test2" class="col s12"  style="display: block" *ngIf="tab != 'people'">
+
+      
+        <div class="col s12 m6" *ngFor=" let p of posts">
+        <app-post  
+        *ngIf="p.user"    
+      [post]="p"
+      [uid] ="p.user"
+      ></app-post>
+      
+
+    </div>
+  </div>
+  </div>
+  </div>

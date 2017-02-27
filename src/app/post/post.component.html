@@ -1,0 +1,116 @@
+<div class="card" *ngIf="post.audio">
+  <div class="card-content pt">
+    <div class="input-field col s12">
+      <img [src]="dp" class="circle prefix" alt="" align="middle" style="margin-left: 2px" *ngIf="dp">            
+      <a [routerLink]="['/index/profile/'+uid]" class="btn name-btn">
+      <b class="black-text">{{fname}} {{lname}}</b></a>
+      <!--<input type="button" class="btn name-btn" value="{{fname}} {{lname}}">-->
+      <br>
+      <a class="btn name-btn t grey-text" [routerLink]="['/index/profile/'+uid]" [queryParams]="{postId: post.$key}"  >{{post.time}}</a>
+             <!--<a  class=" btn-floating waves-effect waves-light right optionBtn" (click)="onCommentDelete(comment.$key)"><i class="material-icons tiny red-text">delete</i></a>
+            <a  class=" btn-floating waves-effect waves-light right optionBtn" (click)="onCommentDelete(comment.$key)"><i class="material-icons tiny red-text">delete</i></a>-->
+<!--<div class="fixed-action-btn horizontal right">-->
+    <!--<a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>-->
+    <ul class="horizontal right" *ngIf="uid == us.getUid()">
+      <li><a class="d" (click)="onRemovePost(post.$key)"><i class="material-icons red-text optionBtn">delete</i></a></li>
+      <!--<li *ngIf="!editMode"><a class="e" (click)="onEditMode()"><i class="material-icons blue-text optionBtn">mode_edit</i></a></li>
+      <li *ngIf="editMode"><a class="e" (click)="onEditModeDisable()"><i class="material-icons red-text optionBtn">call_missed</i></a></li>-->
+    </ul>
+  <!--</div>-->
+    </div>
+    <div class="col s12">
+    <!--<span>
+      {{post.text | replaceLineBreaks}}
+      </span>      -->
+      <div class="card-content" style="margin-top: -20px">
+        
+        <p *ngIf="!editMode" [outerHTML]="post.text | replaceLineBreaks">
+      <!--{{post.text | replaceLineBreaks}}-->
+          
+        </p>
+        <!--<div class="col s12">
+                    <textarea id="textarea1" #textarea value="{{post.text}}" *ngIf="editMode" class="materialize-textarea ta" placeholder="Write Post here!" ></textarea>
+                       <button class="btn waves-light" *ngIf="!loader" (click)="onUpdate(textarea)">Update</button>
+                    
+        </div>  
+            <!--<br><br>-->
+            <!--<div class="col s12" *ngIf="editMode">
+            <div class="preloader-wrapper small right active" *ngIf="loader">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+            </div>
+            </div>-->
+   
+         
+      </div>
+    </div>
+  </div>
+      <div class="card-content grey lighten-4 center">
+        <button (click)="onPlay()" class="btn-floating btn-large waves-effect waves-light red" *ngIf="!playing"><i class="material-icons">play_arrow</i></button>
+        <button (click)="onPause()" class="btn-floating btn-large waves-effect waves-light red" *ngIf="playing"><i class="material-icons">pause</i></button>
+        <button (click)="onStop()" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">stop</i></button>
+        <!--<p class="range-field">
+          <input type="range" id="test5" min="0" [max]="audio.duration" [value]="audio.currentTime" />
+        </p>-->
+    </div>
+    <div class="card-content nopm nr center" *ngIf="us.getUid()">
+      <button class="btn btn-wave" *ngIf="!isLiked" (click)="onLike()"><i class="material-icons left">thumb_up</i>Like</button>
+      <button class="btn btn-wave red-text" *ngIf="isLiked" (click)="onUnLike()"><i class="material-icons left">thumb_up</i><b>Like</b></button>
+      <button class="btn btn-wave" (click)="onCommentButton()"><i class="material-icons left">comment</i>Comment</button>      
+      <!--<button class="btn btn-wave red-text" *ngIf="isFav" (click)="onFavorite()"><i class="material-icons left">star</i><b>Favorite</b></button>
+      <button class="btn btn-wave" *ngIf="!isFav" (click)="onFavorite()"><i class="material-icons left">star</i>Favorite</button>-->
+    </div>
+    <div class="card-content nr" *ngIf="likeLength" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 0.5px solid lightslategray">
+      <a class="btn btn-wave a"><i class="material-icons tiny left">thumb_up</i>{{likeLength}} <span *ngIf="likeLength == 1">people</span><span *ngIf="likeLength > 1">peoples</span> like this</a>
+    </div>
+    <div class="card-content pc center" *ngIf="comment && us.getUid()">
+       <div class="row">
+        <div class="input-field col s12">
+          <img class="circle prefix" [src]="us.getUser().dp" *ngIf="us.getUser().dp" style="width: 39px; height: 39px">
+          <input id="comment_input" type="text" class="validate" placeholder="Write Your Comment" autofocus #c (keyup.enter)="onComment(c)" style="padding-bottom: 0">
+          <!--<textarea name="" placeholder="Write Your Comment" class="validate commentBox materialize-textarea"></textarea>-->
+          <!--<label for="comment_input"></label>-->
+        </div>
+       </div>
+    </div>
+    <div *ngIf="comment  && us.getUid()" id="comments">
+       <div class="card-content pc" *ngFor="let comment of comments" style="margin-bottom: 5px" [id]="comment.$key">
+       <div class="row">
+        <div class="input-field col s12" style="margin-top: 0">
+          <img class="circle prefix" [src]="comment.dp" *ngIf="dp" style="width: 39px; height: 39px">           
+          <a [routerLink]="['/index/profile/'+comment.uid]" class="btn name-btn">
+            <b class="black-text">{{comment.name}}</b></a>
+            <br>
+            <a class="btn name-btn t grey-text">{{comment.time}}</a>
+            <a *ngIf="post.uid == comment.uid || comment.uid == us.getUid()" class=" btn-floating waves-effect waves-light right optionBtn" (click)="onCommentDelete(comment)"><i class="material-icons tiny red-text">delete</i></a>
+         
+        </div>
+        
+        <div class="col s12">
+    <!--<span>
+      {{post.text | replaceLineBreaks}}
+      </span>      -->
+            <div class="card-content" style="margin-top: -20px">
+              <p>
+                {{comment.comment}}
+              </p>
+            </div>
+          </div>
+       </div>
+    </div>
+       <div class="card-content grey lighten-5" style="padding:0;" *ngIf="moreCommentBtn">
+              <a [routerLink]="['/index/profile/'+uid]" [queryParams]="{postId: post.$key}" class="btn btn-flat">See more comments...</a>
+            </div>
+    </div>
+     
+</div>
+

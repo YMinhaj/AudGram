@@ -1,0 +1,49 @@
+<div class="card">
+
+  <div class="card-content grey lighten-4 pt">
+    <div id="test4">
+      <form materialize class="col s12" (submit)="onPost(ta, f,fp);">
+        <div class="row">
+          <!--<div class="col s3 m2 l1">
+          </div>-->
+          <div class="input-field col s12">
+            <img class="circle prefix" [src]="dp" *ngIf="dp" style="width: 39px; height: 39px">
+            
+            <textarea id="textarea1" class="materialize-textarea ta" placeholder="Write Post here!" #ta></textarea>
+            <!--<label for="textarea1">Textarea</label>-->
+          </div>
+          <div class="col s6">
+            <span><b>Upload Audio:</b></span>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Select</span>
+                <input type="file" accept="audio/*" #f (change)="onFileChange(f)" *ngIf="!loader">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path" #fp type="text" style="border: none">
+              </div>
+            </div>
+          </div>
+          <div class="col s6">
+            <br><br>
+            <button class="btn waves-light right" *ngIf="btn">POST</button>
+            <!--<b class="" *ngIf="btn">{{percentage}}</b>            -->
+            <div class="preloader-wrapper small right active" *ngIf="loader">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--<div id="test5">Test 2</div>-->
+    <!--<div id="test6">Test 3</div>-->
+  </div>
+</div>

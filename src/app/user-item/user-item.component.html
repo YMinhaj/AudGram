@@ -1,0 +1,11 @@
+<!--<img [src]="dp" *ngIf="dp" alt="">-->
+<!--<div class="card-panel teal">
+  <img [src]="dp" *ngIf="dp" alt="" style="">
+        </div>-->
+<div [routerLink]="['/index/profile/'+uid]" class="input-field col s12 grey" style="cursor: pointer; padding-top: 10px; padding-bottom: 20px; border-radius: 5px;">
+          <!--<i class="material-icons prefix">account_circle</i>-->
+          <img [src]="dp" class="prefix circle" *ngIf="dp" alt="" style="height: 60px; width:  60px;">
+          <!--<input id="icon_prefix" type="text" class="validate">-->
+          <!--<input type="button" class="btn-flat" [value]="">-->
+          <button class="btn-flat l" style="text-transform: none; margin-top: 15px; width: 100%; font-weight:  bold;">{{fullName}}</button>
+        </div>

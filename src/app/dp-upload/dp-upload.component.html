@@ -1,0 +1,79 @@
+  <app-profile-navbar *ngIf="us.getUid()" [isFullWidth]="bool" [dpUploader]="true"></app-profile-navbar>
+<div class="container" *ngIf="us.getUid()">
+<div class="row" style="top: 50%; transform: translateY(25%)">
+  <div class="col s12 m3"></div>
+
+  <div class="col s12 m6 card black hoverable">
+    <div class="card-content">
+      <span class="card-title center white-text">Upload Profile Picture</span>
+      <div class="row">
+        <div class="col s12 m12 l12" style="text-align: center;">
+          <img [src]="us.getUser().dp" #e alt="" class="circle" style="background-color: white; border: 5px solid white; height: 102px; width: 102px;">
+        </div>
+        <div class="col s12 m12 l12">
+          <form action="#">
+            <div class="file-field input-field">
+              <div class="btn white black-text waves-effect">
+                <span>Browse</span>
+                <input type="file" accept="image/*" #f (change)="onChange(f, e)" class="">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate white-text" type="text" style="border: none;">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col s12 m12">
+          <button class="btn right white black-text waves-effect" (click)="onUpload()" *ngIf="btn">upload</button>
+          <button class="right btn-flat btn-floating btn-large" *ngIf="loader">
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+
+              <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+
+              <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+
+              <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m3"></div>
+
+</div>
+</div>
